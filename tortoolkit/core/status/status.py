@@ -64,7 +64,7 @@ class QBTask(Status):
 
     async def create_message(self):
         msg = f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
-        msg = f"\n<b>│</b>"
+        msg += f"\n<b>│</b>"
         msg += "<b>📚:</b> <code>{}</code>\n".format(
             self._torrent.name[:40]
             )
@@ -81,12 +81,13 @@ class QBTask(Status):
             human_readable_bytes(self._torrent.downloaded),
             human_readable_bytes(self._torrent.total_size)
             )
-        msg += "<b>├ETA ⏳:</b> <b>{}</b>\n".format(
-            human_readable_timedelta(self._torrent.eta)
-            )
         msg += "<b>├🌱:</b>{} <b>├🍐:</b>{}\n".format(
             self._torrent.num_seeds,self._torrent.num_leechs
             )
+        msg += "<b>├ETA ⏳:</b> <b>{}</b>\n".format(
+            human_readable_timedelta(self._torrent.eta)
+            )
+        msg += " | "
         msg += "<b>╰─── ⌊ ⚡️ using engine qBittorrent ⌉ </b>"
 
         return msg
