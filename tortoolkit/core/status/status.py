@@ -63,29 +63,23 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-        msg = "<b>Downloading:</b> <code>{}</code>\n".format(
-            self._torrent.name
-            )
-        msg += "<b>Down:</b> {} <b>Up:</b> {}\n".format(
-            human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
-            human_readable_bytes(self._torrent.upspeed,postfix="/s")
-            )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
-            self.progress_bar(self._torrent.progress),
-            round(self._torrent.progress*100,2)
-            )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
-            human_readable_bytes(self._torrent.downloaded),
-            human_readable_bytes(self._torrent.total_size)
-            )
-        msg += "<b>ETA:</b> <b>{}</b>\n".format(
-            human_readable_timedelta(self._torrent.eta)
-            )
-        msg += "<b>S:</b>{} <b>L:</b>{}\n".format(
-            self._torrent.num_seeds,self._torrent.num_leechs
-            )
-        msg += "<b>Using engine:</b> <code>qBittorrent</code>"
+                percentage = int(file.progress_string(0).split('%')[0])
+                prog = "{0}{1}".format("".join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 10))]),"".join([UN_FINISHED_PROGRESS_STR for i in range(10 - math.floor(percentage / 10))]))
 
+                msg += f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
+                msg += f"\n<b>│</b>"
+                msg += f"\n<b>├</b> <b>{prog}</b>"
+                msg += f"\n<b>│</b>"
+                msg += f"\n<b>├📚:-<code>{downloading_dir_name[:26]}</code>"
+                msg += f"\n<b>├Total Size 🗂:- {file.total_length_string()}</b>"
+                msg += f"\n<b>├Progress:- {file.progress_string()}</b>"
+                msg += f"\n<b>├ETA ⏳:-{file.eta_string()}</b>"
+                msg += f"\n<b>├{msgg}</b>"
+                msg += f"\n<b>├Speed 🚀:- {file.download_speed_string()}</b>"
+                msg += f"\n<b>├💢:-</b> <code>/cancel {file.gid}</code>"
+                msg += f"\n<b>│</b>"
+                msg += f"\n<b>╰─── ⌊ ⚡️ using engine qBittorrent ⌉ </b>"
+                msg += "\n"
         return msg
 
     async def get_state(self):
