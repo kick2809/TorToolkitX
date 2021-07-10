@@ -80,7 +80,6 @@ class QBTask(Status):
                 msg += f"\n<b>│</b>"
                 msg += f"\n<b>╰─── ⌊ ⚡️ using engine qBittorrent ⌉ </b>"
                 msg += "\n"
-        return msg
 
     async def get_state(self):
         #stalled
