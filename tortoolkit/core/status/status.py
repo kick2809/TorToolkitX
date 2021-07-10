@@ -63,9 +63,6 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-                percentage = int(file.progress_string(0).split('%')[0])
-                prog = "{0}{1}".format("".join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 10))]),"".join([UN_FINISHED_PROGRESS_STR for i in range(10 - math.floor(percentage / 10))]))
-
                 msg += f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
                 msg += f"\n<b>│</b>"
                 msg += f"\n<b>├</b> <b>{prog}</b>"
