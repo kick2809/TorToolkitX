@@ -65,7 +65,9 @@ class QBTask(Status):
     async def create_message(self):
         msg = f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
         msg += f"\n<b>│</b>"
-        msg += f"\n<b>├</b> <b>{prog}</b>"
+        msg += "<b>├Progress:</b> {} - {}%\n".format(
+            self.progress_bar(self._torrent.progress),
+            round(self._torrent.progress*100,2)
         msg += f"\n<b>│</b>"
         msg += f"\n<b>├📚:-<code>{downloading_dir_name[:26]}</code>"
         msg += f"\n<b>├Total Size 🗂:- {file.total_length_string()}</b>"
