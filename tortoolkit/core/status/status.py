@@ -63,7 +63,7 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-        msg = "<b>╭───── ⌊ 📥 Downloading ⌉ </b>
+        msg = "<b>╭───── ⌊ 📥 Downloading ⌉ </b>"
         msg += "<b>├📚:</b> <code>{}</code>\n".format(
             self._torrent.name[:30]
             )
