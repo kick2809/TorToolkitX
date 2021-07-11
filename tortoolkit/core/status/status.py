@@ -87,7 +87,7 @@ class QBTask(Status):
             )
         msg += "<b>│</b>\n"
             )
-        msg += f"\n<b>╰─── ⌊ ⚡️ using engine qbittorrent ⌉ </b>"
+        msg += "<b>╰─── ⌊ ⚡️ using engine qbittorrent ⌉ </b>\n"
 
         return msg
 
