@@ -86,7 +86,7 @@ class QBTask(Status):
         msg += "<b>├🌱:</b>{} <b>🍐:</b>{}\n".format(
             self._torrent.num_seeds,self._torrent.num_leechs
             )
-        msg += "<b>│</b>"\n"
+        msg += f"\n<b>│</b>"
             )
         msg += "<b>╰─── ⌊ ⚡️Using engine:</b> <code>qBittorrent ⌉</code>"
 
