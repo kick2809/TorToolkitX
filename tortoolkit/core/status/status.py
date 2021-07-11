@@ -64,19 +64,28 @@ class QBTask(Status):
 
     async def create_message(self):
         msg = f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
-        msg += f"\n<b>│</b>"
+        msg += "<b>├Downloading:</b> <code>{}</code>\n".format(
+            self._torrent.name[:26]
+            )
+        msg += "<b>├Down:</b> {} <b>Up:</b> {}\n".format(
+            human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
+            human_readable_bytes(self._torrent.upspeed,postfix="/s")
+            )
         msg += "<b>├Progress:</b> {} - {}%\n".format(
             self.progress_bar(self._torrent.progress),
             round(self._torrent.progress*100,2)
-        msg += f"\n<b>├📚:-<code>{downloading_dir_name[:26]}</code>"
-        msg += f"\n<b>├Total Size 🗂:- {file.total_length_string()}</b>"
-        msg += f"\n<b>├Progress:- {file.progress_string()}</b>"
-        msg += f"\n<b>├ETA ⏳:-{file.eta_string()}</b>"
-        msg += f"\n<b>├{msgg}</b>"
-        msg += f"\n<b>├Speed 🚀:- {file.download_speed_string()}</b>"
-        msg += f"\n<b>├💢:-</b> <code>/cancel {file.gid}</code>"
-        msg += f"\n<b>│</b>"
-        msg += f"\n<b>╰─── ⌊ ⚡️ using engine aria2 ⌉ </b>"
+            )
+        msg += "<b>├Downloaded:</b> {} of {}\n".format(
+            human_readable_bytes(self._torrent.downloaded),
+            human_readable_bytes(self._torrent.total_size)
+            )
+        msg += "<b>├ETA:</b> <b>{}</b>\n".format(
+            human_readable_timedelta(self._torrent.eta)
+            )
+        msg += "<b>├S:</b>{} <b>L:</b>{}\n".format(
+            self._torrent.num_seeds,self._torrent.num_leechs
+            )
+        msg += f"\n<b>╰─── ⌊ ⚡️ using engine qbittorrent ⌉ </b>"
 
         return msg
 
@@ -211,7 +220,8 @@ class ARTask(Status):
         except:
             pass
 
-        msg = "<b>Downloading:</b> <code>{}</code>\n".format(
+        msg = f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
+        msg += "<b>Downloading:</b> <code>{}</code>\n".format(
             downloading_dir_name
             )
         msg += "<b>Down:</b> {} <b>Up:</b> {}\n".format(
