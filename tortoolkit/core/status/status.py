@@ -64,7 +64,7 @@ class QBTask(Status):
 
     async def create_message(self):
         msg = f"\n<b>╭────── ⌊ 📥 Downloading ⌉ </b>"
-        msg += "<b>│</b>
+        msg += f"\n<b>│</b>"
         msg += "<b>├Progress:</b> {} - {}%\n".format(
             self.progress_bar(self._torrent.progress),
             round(self._torrent.progress*100,2)
