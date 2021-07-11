@@ -68,7 +68,6 @@ class QBTask(Status):
         msg += "<b>├Progress:</b> {} - {}%\n".format(
             self.progress_bar(self._torrent.progress),
             round(self._torrent.progress*100,2)
-        msg += f"\n<b>│</b>"
         msg += f"\n<b>├📚:-<code>{downloading_dir_name[:26]}</code>"
         msg += f"\n<b>├Total Size 🗂:- {file.total_length_string()}</b>"
         msg += f"\n<b>├Progress:- {file.progress_string()}</b>"
