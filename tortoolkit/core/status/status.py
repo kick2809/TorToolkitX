@@ -64,6 +64,7 @@ class QBTask(Status):
 
     async def create_message(self):
         msg = "<b>╭───── ⌊ 📥 Downloading ⌉ </b>"
+        msg = "<b> ├ </b>
         msg += "<b>├📚:</b> <code>{}</code>\n".format(
             self._torrent.name[:30]
             )
@@ -221,28 +222,28 @@ class ARTask(Status):
             pass
 
         msg = f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
-        msg += "<b>Downloading:</b> <code>{}</code>\n".format(
+        msg += "<b>├📚:</b> <code>{}</code>\n".format(
             downloading_dir_name
             )
-        msg += "<b>Down:</b> {} <b>Up:</b> {}\n".format(
+        msg += "<b>├Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
             self._dl_file.download_speed_string(),
             self._dl_file.upload_speed_string()
             )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
+        msg += "<b>├</b> {} - {}%\n".format(
             self.progress_bar(self._dl_file.progress/100),
             round(self._dl_file.progress,2)
             )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
+        msg += "<b>├Total Size 🗂:</b> {} of {}\n".format(
             human_readable_bytes(self._dl_file.completed_length),
             human_readable_bytes(self._dl_file.total_length)
             )
-        msg += "<b>ETA:</b> <b>{}</b>\n".format(
+        msg += "<b>├ETA ⏳:</b> <b>{}</b>\n".format(
             self._dl_file.eta_string()
             )
-        msg += "<b>Conns:</b>{} <b>\n".format(
+        msg += "<b>├Connections 📬:</b>{} <b>\n".format(
             self._dl_file.connections
             )
-        msg += "<b>Using engine:</b> <code>Aria2 For DirectLinks</code>"
+        msg += "<b>╰─── ⌊Using engine:</b> <code>Aria2 For DirectLinks ⌉</code>"
 
         return msg
 
