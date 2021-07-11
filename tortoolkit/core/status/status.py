@@ -64,14 +64,14 @@ class QBTask(Status):
 
     async def create_message(self):
         msg = f"\n<b>╭────── ⌊ 📥 Downloading ⌉ </b>"
-        msg += f"\n<b>│</b>"
         msg += "<b>├</b> {} - {}%\n".format(
             self.progress_bar(self._torrent.progress),
             round(self._torrent.progress*100,2)
             )
         msg += "<b>├📚:</b> <code>{}</code>\n".format(
-            self._torrent.name[:30]
+            self._torrent.name[:55]
             )
+        msg += "<b>│</b>"\n"
         msg += "<b>├Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
             human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
             human_readable_bytes(self._torrent.upspeed,postfix="/s")
@@ -86,8 +86,7 @@ class QBTask(Status):
         msg += "<b>├🌱:</b>{} <b>🍐:</b>{}\n".format(
             self._torrent.num_seeds,self._torrent.num_leechs
             )
-        msg += "<b>│</b>"\n".format(
-            self._rjkjgkjdkldkgjitngk,self._yhkbnkbfgbn
+        msg += "<b>│</b>"\n"
             )
         msg += "<b>╰─── ⌊ ⚡️Using engine:</b> <code>qBittorrent ⌉</code>"
 
