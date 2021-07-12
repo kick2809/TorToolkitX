@@ -63,32 +63,30 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-            msg = f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>" 
-            msg += f"\n├📚:-<code>{download.name()}</code>"
-            msg += f"\n<b>├Status:</b> <i>{download.status()}</i>"
-            if download.status() != MirrorStatus.STATUS_ARCHIVING and download.status() != MirrorStatus.STATUS_EXTRACTING:
-                msg += f"\n├<code>{get_progress_bar_string(download)} {download.progress()}</code>"
-                if download.status() == MirrorStatus.STATUS_DOWNLOADING:
-                    msg += f"\n<b>├Downloaded 📥:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                else:
-                    msg += f"\n<b>├Uploaded 📤:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>├Speed 🚀:</b> {download.speed()}" \
-                        f" | <b>├ETA ⏳:</b> {download.eta()} "
-                # if hasattr(download, 'is_torrent'):
-                try:
-                    msg += f"\n<b>├🌱:</b> {download.aria_download().num_seeders}" \
-                        f" | <b>├🍐:</b> {download.aria_download().connections}"
-                except:
-                    pass
-                if download.message.from_user.username:
-                    uname = f'@{download.message.from_user.username}'
-                else:
-                    uname = f'<a href="tg://user?id={download.message.from_user.id}">{download.message.from_user.first_name}</a>'    
-                msg += f'\n<b>├♂/♀/⚣/⚢👉</b> {uname} (<code>{download.message.from_user.id}</code>)'
-            if download.status() == MirrorStatus.STATUS_DOWNLOADING:
-                msg += f"\n<b>├🚫:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-                msg += f"\n<b>╰─── ⌊ ⚡️ using engine aria2 ⌉ </b>"
-            msg += "\n\n"
+            msg = "<b>╭──「 Downloading:</b> <code>{}</code>\n".format(
+            self._torrent.name
+            )
+        msg += "<b>├Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
+            human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
+            human_readable_bytes(self._torrent.upspeed,postfix="/s")
+            )
+        msg += "<b>├</b> {} - {}%\n".format(
+            self.progress_bar(self._torrent.progress),
+            round(self._torrent.progress*100,2)
+            )
+        msg += "<b>├Total Size 🗂:</b> {} of {}\n".format(
+            human_readable_bytes(self._torrent.downloaded),
+            human_readable_bytes(self._torrent.total_size)
+            )
+        msg += "<b>├ETA ⏳:</b> <b>{}</b>\n".format(
+            human_readable_timedelta(self._torrent.eta)
+            )
+        msg += "<b>├🌱:</b>{} <b>🍐:</b>{}\n".format(
+            self._torrent.num_seeds,self._torrent.num_leechs
+            )
+        msg += "<b>╰─── ⌊  ⚡️ Using engine:</b> <code>qBittorrent  ⌉</code>"
+
+        return msg
 
     async def get_state(self):
         #stalled
