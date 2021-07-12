@@ -63,6 +63,7 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
+            with download_dict_lock:
         msg = ""
         for download in list(download_dict.values()):
             msg += f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>" 
