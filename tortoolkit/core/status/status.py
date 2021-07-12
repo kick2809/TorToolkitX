@@ -63,7 +63,7 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-        msg = "<b>FileName 📚:-</b> <code>{}</code>\n".format(
+        msg = "<b>/b> <code>{}</code>\n".format(
             self._torrent.name
             )
         msg += "<b>╭───⌊ Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
@@ -84,7 +84,7 @@ class QBTask(Status):
         msg += "<b>├🌱:</b>{} <b>🍐:</b>{}\n".format(
             self._torrent.num_seeds,self._torrent.num_leechs
             )
-        msg += "<b>╰─── ⌊  ⚡️ Using engine:</b> <code>qBittorrent ⌉</code>"
+        msg += "<b>╰─── ⌊  ⚡️ Using engine:</b> <code>qBittorrent⌉</code>"
 
         return msg
 
