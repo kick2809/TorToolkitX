@@ -89,8 +89,7 @@ class QBTask(Status):
                 msg += f"\n<b>├🚫:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
                 msg += f"\n<b>╰─── ⌊ ⚡️ using engine aria2 ⌉ </b>"
             msg += "\n\n"
-
-        return msg
+          return msg
 
     async def get_state(self):
         #stalled
