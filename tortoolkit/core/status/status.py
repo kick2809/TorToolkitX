@@ -63,10 +63,10 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-        msg = "<b>/b> <code>{}</code>\n".format(
+        msg = "<b></b> <code>{}</code>\n".format(
             self._torrent.name
             )
-        msg += "<b>╭───⌊ Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
+        msg += "<b>┏━━━━⌈ Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
             human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
             human_readable_bytes(self._torrent.upspeed,postfix="/s")
             )
@@ -219,8 +219,7 @@ class ARTask(Status):
         except:
             pass
 
-        msg = f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>"
-        msg += "<b>├📚:</b> <code>{}</code>\n".format(
+        msg += "<b></b> <code>{}</code>\n".format(
             downloading_dir_name
             )
         msg += "<b>├Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
