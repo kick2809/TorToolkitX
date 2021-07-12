@@ -65,7 +65,7 @@ class QBTask(Status):
     async def create_message(self):
         msg = ""
         for download in list(download_dict.values()):
-            msg += f"\n<b>╭──────── ⌊ 📥 Downloading ⌉  
+            msg += f"\n<b>╭──────── ⌊ 📥 Downloading ⌉ </b>" 
             msg += f"\n├📚:-<code>{download.name()}</code>"
             msg += f"\n<b>├Status:</b> <i>{download.status()}</i>"
             if download.status() != MirrorStatus.STATUS_ARCHIVING and download.status() != MirrorStatus.STATUS_EXTRACTING:
@@ -89,7 +89,7 @@ class QBTask(Status):
                 msg += f'\n<b>├♂/♀/⚣/⚢👉</b> {uname} (<code>{download.message.from_user.id}</code>)'
             if download.status() == MirrorStatus.STATUS_DOWNLOADING:
                 msg += f"\n<b>├🚫:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-                msg += f"\n<b>╰─── ⌊ ⚡️ using engine aria2 ⌉
+                msg += f"\n<b>╰─── ⌊ ⚡️ using engine aria2 ⌉ </b>"
             msg += "\n\n"
 
         return msg
