@@ -222,7 +222,7 @@ class ARTask(Status):
         msg += "<b></b> <code>{}</code>\n".format(
             downloading_dir_name
             )
-        msg += "<b>├Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
+        msg += "<b>┏━━━━⌈ Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
             self._dl_file.download_speed_string(),
             self._dl_file.upload_speed_string()
             )
@@ -240,7 +240,7 @@ class ARTask(Status):
         msg += "<b>├Connections 📬:</b>{} <b>\n".format(
             self._dl_file.connections
             )
-        msg += "<b>╰─── ⌊Using engine:</b> <code>Aria2 For DirectLinks ⌉</code>"
+        msg += "<b>╰─── ⌊ ⚡️ Using engine:</b> <code>Aria2 For DirectLinks ⌉</code>"
 
         return msg
 
@@ -363,20 +363,20 @@ class MegaDl(Status):
         msg = "<b>Downloading:</b> <code>{}</code>\n".format(
             self._dl_info["name"]
             )
-        msg += "<b>Speed:</b> {}\n".format(
+        msg += "<b>┏━━━━⌈ Speed 🚀:</b> {}\n".format(
             human_readable_bytes(self._dl_info["speed"])
             )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
+        msg += "<b>├</b> {} - {}%\n".format(
             self.progress_bar((self._dl_info["completed_length"]/self._dl_info["total_length"])),
             round((self._dl_info["completed_length"]/self._dl_info["total_length"])*100, 2)
             )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
+        msg += "<b>├Total Size 🗂:</b> {} of {}\n".format(
             human_readable_bytes(self._dl_info["completed_length"]),
             human_readable_bytes(self._dl_info["total_length"])
             )
-        msg += "<b>ETA:</b> <b>N/A</b>\n"
+        msg += "<b>├ETA ⏳:</b> <b>N/A</b>\n"
         
-        msg += "<b>Using engine:</b> <code>Mega DL</code>"
+        msg += "<b>╰─── ⌊ ⚡️ Using engine:</b> <code>Mega DL ⌉</code>"
 
         return msg
 
