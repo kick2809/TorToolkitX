@@ -66,6 +66,7 @@ class QBTask(Status):
         msg = "<b>╭──「 Downloading:</b> <code>{}</code>\n".format(
             self._torrent.name
             )
+        msg += f"\n<b>│</b>"
         msg += "<b>├Speed 🚀:</b> {} <b>Up:</b> {}\n".format(
             human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
             human_readable_bytes(self._torrent.upspeed,postfix="/s")
