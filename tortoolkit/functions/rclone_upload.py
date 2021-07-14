@@ -88,7 +88,7 @@ async def rclone_upload(path,message,user_msg,dest_drive,dest_base,edit_time,con
 
         buttons = []
         buttons.append(
-            [KeyboardButtonUrl("Drive URL",folder_link)]
+            [KeyboardButtonUrl("⛅️ Drive URL",folder_link)]
         )
         gd_index = get_val("GD_INDEX_URL")
         if gd_index:
@@ -96,13 +96,13 @@ async def rclone_upload(path,message,user_msg,dest_drive,dest_base,edit_time,con
             index_link = requote_uri(index_link)
             torlog.info("index link "+str(index_link))
             buttons.append(
-                [KeyboardButtonUrl("Index URL",index_link)]
+                [KeyboardButtonUrl("👌 Index URL",index_link)]
             )
 
         ul_size = calculate_size(path)
         transfer[0] += ul_size
         ul_size = Human_Format.human_readable_bytes(ul_size)
-        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUploaded Size:- {}\nUPLOADED FOLDER :-<code>{}</code>\nTo Drive.".format(omsg.sender_id,ul_size,os.path.basename(path))
+        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUPLOADED FOLDER :-<code>{}</code>\nTo Drive.".format(omsg.sender_id,ul_size,os.path.basename(path))
         
         await omsg.reply(txtmsg,buttons=buttons,parse_mode="html")
         await msg.delete()
@@ -139,7 +139,7 @@ async def rclone_upload(path,message,user_msg,dest_drive,dest_base,edit_time,con
 
         file_link = f"https://drive.google.com/file/d/{gid[0]}/view"
         buttons.append(
-            [KeyboardButtonUrl("Drive URL",file_link)]
+            [KeyboardButtonUrl("⛅️ Drive URL",file_link)]
         )
         gd_index = get_val("GD_INDEX_URL")
         if gd_index:
@@ -147,13 +147,13 @@ async def rclone_upload(path,message,user_msg,dest_drive,dest_base,edit_time,con
             index_link = requote_uri(index_link)
             torlog.info("index link "+str(index_link))
             buttons.append(
-                [KeyboardButtonUrl("Index URL",index_link)]
+                [KeyboardButtonUrl("👌 Index URL",index_link)]
             )
 
         ul_size = calculate_size(path)
         transfer[0] += ul_size
         ul_size = Human_Format.human_readable_bytes(ul_size)
-        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUploaded Size:- {}\nUPLOADED FILE :-<code>{}</code>\nTo Drive.".format(omsg.sender_id,ul_size,os.path.basename(path))
+        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUPLOADED FILE :-<code>{}</code>\nTo Drive.".format(omsg.sender_id,ul_size,os.path.basename(path))
 
         
         await omsg.reply(txtmsg,buttons=buttons,parse_mode="html")
