@@ -102,7 +102,7 @@ async def rclone_upload(path,message,user_msg,dest_drive,dest_base,edit_time,con
         ul_size = calculate_size(path)
         transfer[0] += ul_size
         ul_size = Human_Format.human_readable_bytes(ul_size)
-        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUPLOADED FOLDER :-<code>{}</code>\nTo Drive.".format(omsg.sender_id,ul_size,os.path.basename(path))
+        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUPLOADED FOLDER:-<code>{}</code>\nTo Drive.".format(omsg.sender_id,os.path.basename(path))
         
         await omsg.reply(txtmsg,buttons=buttons,parse_mode="html")
         await msg.delete()
@@ -153,7 +153,7 @@ async def rclone_upload(path,message,user_msg,dest_drive,dest_base,edit_time,con
         ul_size = calculate_size(path)
         transfer[0] += ul_size
         ul_size = Human_Format.human_readable_bytes(ul_size)
-        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUPLOADED FILE :-<code>{}</code>\nTo Drive.".format(omsg.sender_id,ul_size,os.path.basename(path))
+        txtmsg = "<a href='tg://user?id={}'>Done</a>\n#uploads\nUPLOADED FILE:-<code>{}</code>\nTo Drive.".format(omsg.sender_id,os.path.basename(path))
 
         
         await omsg.reply(txtmsg,buttons=buttons,parse_mode="html")
